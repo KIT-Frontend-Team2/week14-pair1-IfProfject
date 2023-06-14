@@ -11,7 +11,7 @@ const IssuesAPI = {
 
 	getDetailIssueComments(IssueId) {
 		return axiosInstance.get(`/${IssueId}/comments`)
-	}
+	},
 }
 
 export default IssuesAPI
