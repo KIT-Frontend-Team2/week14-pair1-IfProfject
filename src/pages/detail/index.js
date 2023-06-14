@@ -33,8 +33,17 @@ const DetailPage = () => {
 	if (!detailInfo) return <div>데이터가 없습니다</div>
 
 	console.log(detailInfo.data)
-	const { title, labels, body, created_at, state, number, updated_at, user } =
-		detailInfo.data
+	const {
+		title,
+		labels,
+		body,
+		created_at,
+		state,
+		number,
+		updated_at,
+		user,
+		comments,
+	} = detailInfo.data
 	return (
 		<S.Wrapper>
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
@@ -95,7 +104,7 @@ const DetailPage = () => {
 						<ReactMarkdown children={body} />
 					</S.BodySection>
 				</S.Section>
-				<Comments issuesId={number} />
+				<Comments detailCommentsLength={comments} />
 			</Container>
 			<BackButton />
 			<TopButton />

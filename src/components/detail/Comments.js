@@ -4,7 +4,7 @@ import OneComment from './one-comment'
 import styled from 'styled-components'
 import { useParams } from 'react-router'
 
-export default function Comments() {
+export default function Comments({ detailCommentsLength }) {
 	const [detailComments, setDetailComments] = useState(null)
 	const searchParam = useParams()
 	const loadDetail = async detailId => {
@@ -25,7 +25,7 @@ export default function Comments() {
 	return (
 		<>
 			<strong>Comments</strong>{' '}
-			<CommentLength>{detailComments.length}ea</CommentLength>
+			<CommentLength>({detailCommentsLength}ea)</CommentLength>
 			<S.CommentList>
 				{detailComments.map(comment => (
 					<OneComment key={comment.id} comment={comment} />
