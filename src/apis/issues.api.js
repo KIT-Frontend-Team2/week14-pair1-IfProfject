@@ -8,6 +8,10 @@ const IssuesAPI = {
 	getDetailIssue(IssueId) {
 		return axiosInstance.get(`/${IssueId}`)
 	},
+
+	getDetailIssueComments(IssueId) {
+		return axiosInstance.get(`/${IssueId}/comments`)
+	},
 }
 
 export default IssuesAPI
