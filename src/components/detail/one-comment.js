@@ -20,8 +20,6 @@ export default function OneComment({ comment }) {
 						{timeFormatter(updated_at)}
 					</div>
 				</S.InfoDataLow>
-				<div></div>
-				<div></div>
 				<ReactMarkdown children={body} />
 			</S.Wrapper>
 		</li>

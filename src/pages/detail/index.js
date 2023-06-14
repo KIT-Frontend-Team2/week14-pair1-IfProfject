@@ -9,24 +9,30 @@ import Comments from 'components/detail/Comments'
 import timeFormatter from 'utils/time-helper'
 import CheckCircle from '@mui/icons-material/CheckCircle'
 import Adjust from '@mui/icons-material/Adjust'
+import { useNavigate, useParams } from 'react-router-dom'
+import TopButton from 'components/buttons/Top'
+import BackButton from 'components/buttons/Back'
 const DetailPage = () => {
+	const searchParam = useParams()
 	const [detailInfo, setDetailInfo] = useState(null)
-
+	const navigate = useNavigate()
 	const loadDetail = async detailId => {
 		try {
-			const res = IssuesAPI.getDetailIssue(detailId)
+			const res = await IssuesAPI.getDetailIssue(detailId)
 			return res
 		} catch (err) {
-			throw err
+			alert('잘못된 경로입니다.')
+			navigate('/')
 		}
 	}
 
 	useEffect(() => {
-		loadDetail(4).then(res => setDetailInfo(res))
+		loadDetail(searchParam.issueId).then(res => setDetailInfo(res))
 	}, [])
 
 	if (!detailInfo) return <div>데이터가 없습니다</div>
 
+	console.log(detailInfo.data)
 	const { title, labels, body, created_at, state, number, updated_at, user } =
 		detailInfo.data
 	return (
@@ -91,6 +97,8 @@ const DetailPage = () => {
 				</S.Section>
 				<Comments issuesId={number} />
 			</Container>
+			<BackButton />
+			<TopButton />
 		</S.Wrapper>
 	)
 }
@@ -124,6 +132,7 @@ const InfoSection = styled.table`
 	tr > td:first-child {
 		padding-right: 20px;
 		font-weight: bold;
+		width: 150px;
 	}
 `
 const InfoDataLow = styled.tr``
