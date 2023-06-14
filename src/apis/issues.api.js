@@ -10,7 +10,7 @@ const IssuesAPI = {
 	},
 
 	getDetailIssueComments(IssueId) {
-		return axiosInstance.get(`/${IssueId}/comments`)
+		return axiosInstance.get(`${IssueId}/comments`)
 	},
 }
 
