@@ -1,22 +1,28 @@
 import { Pagination } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { flexCenter } from 'styles/common'
 
 const Paging = () => {
-	const navigation = useNavigate()
-
-	const handleChange = () => {
-		console.log('페이지 이동')
+	const [searchParam, setSearchParam] = useSearchParams()
+	const navigate = useNavigate()
+	const handleChange = (e, page) => {
+		searchParam.set('page', page)
+		navigate('/issues?' + searchParam.toString())
 	}
+	const defaultPerPage = searchParam.get('per_page') || 30
+
+	const LIST_COUNT = 200
 
 	return (
 		<S.Wrapper>
 			<Pagination
-				count={10}
+				name="page"
+				count={Math.floor(LIST_COUNT / defaultPerPage)}
 				defaultPage={1}
-				siblingCount={5}
 				onChange={handleChange}
+				showFirstButton={true}
+				showLastButton={true}
 			/>
 		</S.Wrapper>
 	)
