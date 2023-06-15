@@ -1,7 +1,17 @@
 import axiosInstance from './@core'
-
 const IssuesAPI = {
-	getIssuesLists() {
+	getIssuesLists(queryString = null) {
+		if (queryString) {
+			let searchObj = JSON.parse(
+				'{"' +
+					decodeURI(queryString)
+						.replace(/"/g, '\\"')
+						.replace(/&/g, '","')
+						.replace(/=/g, '":"') +
+					'"}',
+			)
+			return axiosInstance.get('', { params: searchObj })
+		}
 		return axiosInstance.get()
 	},
 

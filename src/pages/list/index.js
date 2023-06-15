@@ -5,18 +5,20 @@ import IssueList from './components/list/issue-list'
 import styled from 'styled-components'
 import theme from 'styles/theme'
 import SearchBox from './components/searchBox/SearchBox'
+import { useSearchParams } from 'react-router-dom'
 
 const ListPage = () => {
+	const [searchParam, setSearchParam] = useSearchParams()
 	const [issues, setIssues] = useState([])
 
 	const getIssueList = async () => {
-		const getIssue = await IssuesAPI.getIssuesLists()
+		const getIssue = await IssuesAPI.getIssuesLists(searchParam.toString())
 		setIssues(getIssue.data)
 	}
 
 	useEffect(() => {
 		getIssueList()
-	}, [])
+	}, [searchParam.toString()])
 
 	return (
 		<S.Wrapper>
