@@ -1,5 +1,4 @@
 import axiosInstance from './@core'
-const qs = require('qs')
 const IssuesAPI = {
 	getIssuesLists(queryString = null) {
 		if (queryString) {

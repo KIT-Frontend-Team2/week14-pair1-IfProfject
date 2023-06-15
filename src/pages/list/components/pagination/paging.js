@@ -8,9 +8,11 @@ const Paging = () => {
 	const navigate = useNavigate()
 	const handleChange = (e, page) => {
 		searchParam.set('page', page)
+		window.scrollTo({ top: 0, behavior: 'smooth' })
 		navigate('/issues?' + searchParam.toString())
 	}
-	const defaultPerPage = searchParam.get('per_page') || 30
+	const defaultPerPage = parseInt(searchParam.get('per_page')) || 30
+	const page = parseInt(searchParam.get('page')) || 1
 
 	const LIST_COUNT = 200
 
@@ -19,7 +21,9 @@ const Paging = () => {
 			<Pagination
 				name="page"
 				count={Math.floor(LIST_COUNT / defaultPerPage)}
+				siblingCount={5}
 				defaultPage={1}
+				page={page}
 				onChange={handleChange}
 				showFirstButton={true}
 				showLastButton={true}

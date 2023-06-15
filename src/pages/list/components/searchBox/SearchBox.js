@@ -37,12 +37,13 @@ const SearchBox = () => {
 				</Box>
 				<Box sx={{ minWidth: 200 }} size="small">
 					<FormControl fullWidth>
-						<InputLabel id="Sort">Sort by</InputLabel>
+						<InputLabel id="Sort by">Sort by</InputLabel>
 						<Select
 							name="sort"
-							labelId="Sort"
+							labelId="Sort by"
 							id="demo-simple-select-2"
-							label="Sort"
+							label="Sort by"
+							value={''}
 							onChange={handleChange}
 						>
 							<MenuItem value={'created'}>Newest</MenuItem>
