@@ -14,6 +14,7 @@ export const PALETTE = {
 	white: '#FFFFFF',
 	background: {
 		white: '#FFFFFF',
+		paleGray: '#f7f8fa',
 	},
 	error: '#FF0000',
 	gray: {
@@ -27,6 +28,7 @@ export const PALETTE = {
 
 const FONT_SIZE = {
 	small: '12px',
+	semiMedium: '14px',
 	medium: '16px',
 	large: '20px',
 }
@@ -34,6 +36,7 @@ const FONT_SIZE = {
 const FONT_WEIGHT = {
 	thin: '100',
 	regular: '400',
+	semiBold: '500',
 	bold: '800',
 }
 
