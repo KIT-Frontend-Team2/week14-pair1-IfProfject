@@ -2,6 +2,8 @@ import { Avatar } from '@mui/material'
 import { UserCard } from 'pages/detail'
 import React from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 import styled from 'styled-components'
 import timeFormatter from 'utils/time-helper'
 
@@ -20,7 +22,11 @@ export default function OneComment({ comment }) {
 						{timeFormatter(updated_at)}
 					</div>
 				</S.InfoDataLow>
-				<ReactMarkdown children={body} />
+				<ReactMarkdown
+					children={body}
+					rehypePlugins={[rehypeRaw]}
+					remarkPlugins={[remarkGfm]}
+				/>
 			</S.Wrapper>
 		</li>
 	)

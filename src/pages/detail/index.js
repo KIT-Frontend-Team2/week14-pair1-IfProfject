@@ -12,6 +12,8 @@ import Adjust from '@mui/icons-material/Adjust'
 import { useNavigate, useParams } from 'react-router-dom'
 import TopButton from 'components/buttons/Top'
 import BackButton from 'components/buttons/Back'
+import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 const DetailPage = () => {
 	const searchParam = useParams()
 	const [detailInfo, setDetailInfo] = useState(null)
@@ -49,7 +51,12 @@ const DetailPage = () => {
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
 				<S.Section>
 					<S.TitleSection>
-						{title} <S.Number>#{number}</S.Number>{' '}
+						<ReactMarkdown
+							children={title}
+							rehypePlugins={[rehypeRaw]}
+							remarkPlugins={[remarkGfm]}
+						/>{' '}
+						<S.Number>#{number}</S.Number>{' '}
 						{state === 'open' ? (
 							<Chip icon={<Adjust />} label={state} color="secondary" />
 						) : (
@@ -101,7 +108,11 @@ const DetailPage = () => {
 						</tbody>
 					</S.InfoSection>
 					<S.BodySection>
-						<ReactMarkdown children={body} />
+						<ReactMarkdown
+							children={body}
+							rehypePlugins={[rehypeRaw]}
+							remarkPlugins={[remarkGfm]}
+						/>
 					</S.BodySection>
 				</S.Section>
 				<Comments detailCommentsLength={comments} />

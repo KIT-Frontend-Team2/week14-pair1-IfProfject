@@ -1,5 +1,8 @@
 import { Avatar, Card, CardContent, Chip, Typography } from '@mui/material'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useNavigate } from 'react-router-dom'
+import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 import styled from 'styled-components'
 import theme from 'styles/theme'
 import fontIsDark from 'utils/color-helper'
@@ -32,7 +35,11 @@ const OneIssue = ({ issue }) => {
 							}}
 							onClick={() => onClickTitle(number)}
 						>
-							{title}
+							<ReactMarkdown
+								children={title}
+								rehypePlugins={[rehypeRaw]}
+								remarkPlugins={[remarkGfm]}
+							/>
 						</Typography>
 					</div>
 					<div></div>
