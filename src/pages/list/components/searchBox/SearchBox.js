@@ -14,10 +14,15 @@ const SearchBox = () => {
 		navigate('/issues?' + searchParam.toString())
 	}
 
+	const per_page = searchParam.get('per_page') || 30
+	const sort = searchParam.get('sort') || 'created'
+	const state = searchParam.get('state') || 'open'
+	const direction = searchParam.get('direction') || 'desc'
+
 	return (
 		<S.Wrapper>
 			<S.Container>
-				<Box sx={{ minWidth: 200 }} size="small">
+				<Box sx={{ flex: 1 }}>
 					<FormControl fullWidth>
 						<InputLabel id="perPage">Per page</InputLabel>
 						<Select
@@ -25,7 +30,7 @@ const SearchBox = () => {
 							name="per_page"
 							id="demo-simple-select-1"
 							label="perPage"
-							value={''}
+							value={per_page}
 							onChange={handleChange}
 						>
 							<MenuItem value={10}>10</MenuItem>
@@ -35,7 +40,7 @@ const SearchBox = () => {
 						</Select>
 					</FormControl>
 				</Box>
-				<Box sx={{ minWidth: 200 }} size="small">
+				<Box sx={{ flex: 1 }}>
 					<FormControl fullWidth>
 						<InputLabel id="Sort by">Sort by</InputLabel>
 						<Select
@@ -43,7 +48,7 @@ const SearchBox = () => {
 							labelId="Sort by"
 							id="demo-simple-select-2"
 							label="Sort by"
-							value={''}
+							value={sort}
 							onChange={handleChange}
 						>
 							<MenuItem value={'created'}>Newest</MenuItem>
@@ -52,7 +57,7 @@ const SearchBox = () => {
 						</Select>
 					</FormControl>
 				</Box>
-				<Box sx={{ minWidth: 200 }} size="small">
+				<Box sx={{ flex: 1 }}>
 					<FormControl fullWidth>
 						<InputLabel id="state">state</InputLabel>
 						<Select
@@ -60,7 +65,7 @@ const SearchBox = () => {
 							labelId="state"
 							id="demo-simple-select-3"
 							label="state"
-							value={''}
+							value={state}
 							onChange={handleChange}
 						>
 							<MenuItem value={'open'}>open</MenuItem>
@@ -69,7 +74,7 @@ const SearchBox = () => {
 						</Select>
 					</FormControl>
 				</Box>
-				<Box sx={{ minWidth: 200 }} size="small">
+				<Box sx={{ flex: 1 }}>
 					<FormControl fullWidth>
 						<InputLabel id="state">direction</InputLabel>
 						<Select
@@ -77,7 +82,7 @@ const SearchBox = () => {
 							labelId="direction"
 							id="demo-simple-select-4"
 							label="direction"
-							value={''}
+							value={direction}
 							onChange={handleChange}
 						>
 							<MenuItem value={'desc'}>desc</MenuItem>
