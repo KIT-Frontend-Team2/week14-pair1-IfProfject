@@ -1,7 +1,25 @@
 import { Box } from '@mui/material'
 import OneIssue from './one-issue'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getIssue } from 'reducer/issue'
+import { useSearchParams } from 'react-router-dom'
 
-const IssueList = ({ issues }) => {
+const IssueList = () => {
+	const [searchParam, setSearchParam] = useSearchParams()
+
+	const dispatch = useDispatch()
+	const issues = useSelector(state => state.issue.issues)
+	const { loading } = useSelector(state => state.issue.getIssueState)
+
+	const getIssueList = async () => {
+		await dispatch(getIssue(searchParam.toString()))
+	}
+
+	useEffect(() => {
+		getIssueList()
+	}, [searchParam])
+
 	return (
 		<Box
 			sx={{
