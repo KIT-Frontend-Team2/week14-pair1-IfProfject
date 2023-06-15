@@ -15,3 +15,10 @@ export const getDetail = rest.get(
 		return res(ctx.status(200), ctx.json(ISSUES_MOCK.Detail))
 	},
 )
+
+export const getDetailComments = rest.get(
+	API_CONST.BACKEND_URL + API_CONST.OWNER_REPO_TYPE + '/:issuesId/comments',
+	async (_, res, ctx) => {
+		return res(ctx.status(200), ctx.json(ISSUES_MOCK.DetailComments))
+	},
+)
