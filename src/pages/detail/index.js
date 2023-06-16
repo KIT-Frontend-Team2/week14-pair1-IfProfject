@@ -14,14 +14,15 @@ import BackButton from 'components/buttons/Back'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDetail } from 'reducer/issue'
+import { getDetail } from 'reducer/detail'
 
 const DetailPage = () => {
 	const searchParam = useParams()
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const detailInfo = useSelector(state => state.issue.detail)
-	const { loading } = useSelector(state => state.issue.getDetailState)
+	const detailInfo = useSelector(state => state.detail.detail)
+	const { loading } = useSelector(state => state.detail.getDetailState)
+
 	const loadDetail = () => {
 		dispatch(getDetail(searchParam.issueId))
 	}
