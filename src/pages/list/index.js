@@ -1,8 +1,8 @@
-import Paging from './components/pagination/paging'
-import IssueList from './components/list/issue-list'
 import styled from 'styled-components'
 import theme from 'styles/theme'
-import SearchBox from './components/searchBox/SearchBox'
+import SearchBox from 'components/list/searchBox/SearchBox'
+import IssueList from 'components/list/list/issue-list'
+import Pagination from 'components/list/pagination/pagination'
 
 const ListPage = () => {
 	return (
@@ -10,7 +10,7 @@ const ListPage = () => {
 			<S.Container>
 				<SearchBox />
 				<IssueList />
-				<Paging />
+				<Pagination />
 			</S.Container>
 		</S.Wrapper>
 	)

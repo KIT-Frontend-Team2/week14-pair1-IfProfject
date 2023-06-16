@@ -33,12 +33,12 @@ const OneIssue = ({ issue }) => {
 									textDecoration: 'underline',
 								},
 							}}
-							onClick={() => onClickTitle(number)}
 						>
 							<ReactMarkdown
 								children={title}
 								rehypePlugins={[rehypeRaw]}
 								remarkPlugins={[remarkGfm]}
+								onClick={() => onClickTitle(number)}
 							/>
 						</Typography>
 					</div>
