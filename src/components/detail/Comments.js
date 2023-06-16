@@ -3,13 +3,13 @@ import OneComment from './one-comment'
 import styled from 'styled-components'
 import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { getComment } from 'reducer/issue'
+import { getComment } from 'reducer/comment'
 
 export default function Comments({ detailCommentsLength }) {
 	const searchParam = useParams()
 	const dispatch = useDispatch()
-	const detailComments = useSelector(state => state.issue.comments)
-	const { loading } = useSelector(state => state.issue.getCommentState)
+	const detailComments = useSelector(state => state.comment.comments)
+	const { loading } = useSelector(state => state.comment.getCommentState)
 
 	const loadDetail = () => {
 		dispatch(getComment(searchParam.issueId))

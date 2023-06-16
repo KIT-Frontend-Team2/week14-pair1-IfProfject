@@ -14,7 +14,6 @@ const OneIssue = ({ issue }) => {
 	const navigation = useNavigate()
 
 	const onClickTitle = number => {
-		console.log(number)
 		navigation(`/issues/${number}`)
 	}
 
@@ -33,12 +32,12 @@ const OneIssue = ({ issue }) => {
 									textDecoration: 'underline',
 								},
 							}}
+							onClick={() => onClickTitle(number)}
 						>
 							<ReactMarkdown
 								children={title}
 								rehypePlugins={[rehypeRaw]}
 								remarkPlugins={[remarkGfm]}
-								onClick={() => onClickTitle(number)}
 							/>
 						</Typography>
 					</div>
