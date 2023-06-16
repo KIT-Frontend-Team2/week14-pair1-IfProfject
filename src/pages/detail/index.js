@@ -22,12 +22,12 @@ const DetailPage = () => {
 	const dispatch = useDispatch()
 	const detailInfo = useSelector(state => state.issue.detail)
 	const { loading } = useSelector(state => state.issue.getDetailState)
-
 	const loadDetail = () => {
 		dispatch(getDetail(searchParam.issueId))
 	}
 
 	useEffect(() => {
+		window.scrollTo({ top: 0 })
 		loadDetail()
 	}, [])
 
