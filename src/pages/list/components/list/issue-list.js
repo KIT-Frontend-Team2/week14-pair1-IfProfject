@@ -12,8 +12,8 @@ const IssueList = () => {
 	const issues = useSelector(state => state.issue.issues)
 	const { loading } = useSelector(state => state.issue.getIssueState)
 
-	const getIssueList = async () => {
-		await dispatch(getIssue(searchParam.toString()))
+	const getIssueList = () => {
+		dispatch(getIssue(searchParam.toString()))
 	}
 
 	useEffect(() => {

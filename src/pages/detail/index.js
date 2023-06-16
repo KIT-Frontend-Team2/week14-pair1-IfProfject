@@ -1,5 +1,4 @@
-import IssuesAPI from 'apis/issues.api'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import Container from '@mui/material/Container'
 import { Avatar, Chip } from '@mui/material'
@@ -14,27 +13,27 @@ import TopButton from 'components/buttons/Top'
 import BackButton from 'components/buttons/Back'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDetail } from 'reducer/issue'
+
 const DetailPage = () => {
 	const searchParam = useParams()
-	const [detailInfo, setDetailInfo] = useState(null)
 	const navigate = useNavigate()
-	const loadDetail = async detailId => {
-		try {
-			const res = await IssuesAPI.getDetailIssue(detailId)
-			return res
-		} catch (err) {
-			alert('잘못된 경로입니다.')
-			navigate('/')
-		}
+	const dispatch = useDispatch()
+	const detailInfo = useSelector(state => state.issue.detail)
+	const { loading } = useSelector(state => state.issue.getDetailState)
+
+	const loadDetail = () => {
+		dispatch(getDetail(searchParam.issueId))
 	}
 
 	useEffect(() => {
-		loadDetail(searchParam.issueId).then(res => setDetailInfo(res))
+		loadDetail()
 	}, [])
 
 	if (!detailInfo) return <div>데이터가 없습니다</div>
 
-	console.log(detailInfo.data)
+	console.log(detailInfo)
 	const {
 		title,
 		labels,
@@ -45,7 +44,7 @@ const DetailPage = () => {
 		updated_at,
 		user,
 		comments,
-	} = detailInfo.data
+	} = detailInfo
 	return (
 		<S.Wrapper>
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
