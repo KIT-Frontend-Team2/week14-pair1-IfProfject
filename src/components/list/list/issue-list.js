@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getIssue } from 'reducer/issue'
 import { useSearchParams } from 'react-router-dom'
+import LoadingList from './loading-list'
 
 const IssueList = () => {
 	const [searchParam, setSearchParam] = useSearchParams()
@@ -21,25 +22,31 @@ const IssueList = () => {
 	}, [searchParam])
 
 	return (
-		<Box
-			sx={{
-				display: 'flex',
-				flexWrap: 'wrap',
-				alignItems: 'stretch',
-			}}
-		>
-			{issues.map(issue => (
+		<>
+			{loading ? (
+				<LoadingList />
+			) : (
 				<Box
 					sx={{
-						width: '50%',
-						padding: 1,
+						display: 'flex',
+						flexWrap: 'wrap',
+						alignItems: 'stretch',
 					}}
-					key={issue.id}
 				>
-					<OneIssue issue={issue} />
+					{issues.map(issue => (
+						<Box
+							sx={{
+								width: '50%',
+								padding: 1,
+							}}
+							key={issue.id}
+						>
+							<OneIssue issue={issue} />
+						</Box>
+					))}
 				</Box>
-			))}
-		</Box>
+			)}
+		</>
 	)
 }
 
