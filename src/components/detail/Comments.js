@@ -9,7 +9,6 @@ export default function Comments({ detailCommentsLength }) {
 	const searchParam = useParams()
 	const dispatch = useDispatch()
 	const detailComments = useSelector(state => state.comment.comments)
-	const { loading } = useSelector(state => state.comment.getCommentState)
 
 	const loadDetail = () => {
 		dispatch(getComment(searchParam.issueId))
@@ -19,7 +18,6 @@ export default function Comments({ detailCommentsLength }) {
 		loadDetail()
 	}, [])
 
-	if (!detailComments) return <div>Don't have Comments</div>
 	return (
 		<>
 			<strong>Comments</strong>{' '}
