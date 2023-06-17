@@ -32,9 +32,8 @@ const DetailPage = () => {
 		loadDetail()
 	}, [])
 
-	if (loading) return <SkeletonDetailPage />
+	if (loading || !detailInfo) return <SkeletonDetailPage />
 
-	console.log(detailInfo)
 	const {
 		title,
 		labels,
@@ -46,6 +45,7 @@ const DetailPage = () => {
 		user,
 		comments,
 	} = detailInfo
+
 	return (
 		<S.Wrapper>
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
@@ -89,9 +89,8 @@ const DetailPage = () => {
 												key={label.id}
 												label={label.name}
 												style={{
-													color: `${
-														fontIsDark(label.color) ? 'white' : 'black'
-													}`,
+													color: `${fontIsDark(label.color) ? 'white' : 'black'
+														}`,
 													backgroundColor: `#${label.color}`,
 													fontWeight: 'bold',
 													marginRight: '5px',
