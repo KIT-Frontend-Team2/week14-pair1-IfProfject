@@ -75,9 +75,11 @@ const Wrapper = styled.div`
 const PageButton = styled.div`
 	${flexCenter}
 	background-color: ${({ page, currentPage }) =>
-		page && page === currentPage ? `#ddd` : `#fff`};
+		page && page === currentPage ? `#ddd` : `transparent`};
 	width: 32px;
 	height: 32px;
+	color: ${({ page, currentPage }) =>
+		page && page === currentPage ? `#000` : `#333`};
 	border-radius: 50%;
 `
 

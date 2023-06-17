@@ -8,6 +8,7 @@ const ListPage = () => {
 	return (
 		<S.Wrapper>
 			<S.Container>
+				<S.Title>Issue Finder 🔍</S.Title>
 				<SearchBox />
 				<IssueList />
 				<Pagination />
@@ -28,7 +29,16 @@ const Container = styled.div`
 	margin: 0 auto;
 `
 
+const Title = styled.div`
+	padding: 60px 0;
+	color: #333;
+	font-size: 36px;
+	font-weight: 700;
+	text-align: center;
+`
+
 const S = {
 	Wrapper,
 	Container,
+	Title,
 }
