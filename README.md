@@ -23,13 +23,13 @@ AIF Project (Angular issues finder)
 ### 시연 동영상
 
 #### 렌딩 페이지
-![GIFMaker_me (1)](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/5cac03d2-93e8-4147-a0bb-7da6d63b5885)
+![렌딩페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/7818c7dc-44b4-48f2-9c14-4fda9474f0f8)
 
 #### 목록 페이지
-![GIFMaker_me](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/14107612-7fa2-4799-8f05-a86aed92df4c)
+![목록페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/b91d9d66-a1a3-4c56-9f1a-ae296b0dcc28)
 
 #### 상세 페이지
-![GIFMaker_me (2)](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/df0dead1-caad-430d-b215-db22f81db8b4)
+![상세페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/b8b98f28-01cb-4eed-8ade-be8e642664db)
 
 ### 디자인 정리
 
