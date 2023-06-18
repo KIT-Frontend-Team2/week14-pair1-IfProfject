@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from 'reducer/detail'
 import SkeletonDetailPage from 'components/detail/Skeleton'
 import { motion, useScroll } from 'framer-motion'
+import { useDevice } from 'hooks/useDevice'
 
 const DetailPage = () => {
 	const { scrollYProgress } = useScroll()
@@ -28,6 +29,7 @@ const DetailPage = () => {
 	const loadDetail = () => {
 		dispatch(getDetail(searchParam.issueId))
 	}
+	const { isMobile } = useDevice()
 
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
@@ -57,7 +59,7 @@ const DetailPage = () => {
 			<S.Wrapper>
 				<Container style={{ paddingTop: '40px' }} maxWidth="xl">
 					<S.Section>
-						<S.TitleSection>
+						<S.TitleSection isMobile={isMobile}>
 							<ReactMarkdown
 								children={title}
 								rehypePlugins={[rehypeRaw]}
@@ -76,7 +78,9 @@ const DetailPage = () => {
 									<td>user</td>
 									<td>
 										<UserCard>
-											<Avatar alt={user.login} src={user.avatar_url} />{' '}
+											{!isMobile && (
+												<Avatar alt={user.login} src={user.avatar_url} />
+											)}
 											{user.login}
 										</UserCard>
 									</td>
@@ -87,27 +91,29 @@ const DetailPage = () => {
 									</td>
 									<td>{timeFormatter(updated_at)}</td>
 								</S.InfoDataLow>
-								<S.InfoDataLow>
-									<td>Labels</td>
-									<td>
-										{labels.map(label => {
-											return (
-												<Chip
-													key={label.id}
-													label={label.name}
-													style={{
-														color: `${
-															fontIsDark(label.color) ? 'white' : 'black'
-														}`,
-														backgroundColor: `#${label.color}`,
-														fontWeight: 'bold',
-														marginRight: '5px',
-													}}
-												/>
-											)
-										})}
-									</td>
-								</S.InfoDataLow>
+								{!isMobile && (
+									<S.InfoDataLow>
+										<td>Labels</td>
+										<td>
+											{labels.map(label => {
+												return (
+													<Chip
+														key={label.id}
+														label={label.name}
+														style={{
+															color: `${
+																fontIsDark(label.color) ? 'white' : 'black'
+															}`,
+															backgroundColor: `#${label.color}`,
+															fontWeight: 'bold',
+															marginRight: '5px',
+														}}
+													/>
+												)
+											})}
+										</td>
+									</S.InfoDataLow>
+								)}
 								<S.InfoDataLow>
 									<td>Unlimited</td>
 									<td>Unlimited</td>
@@ -143,13 +149,19 @@ export const Section = styled.section`
 	height: 100%;
 	margin-bottom: 20px;
 `
-const TitleSection = styled.h2``
+const TitleSection = styled.h2`
+	p {
+		font-size: ${({ isMobile }) => (isMobile ? '24px' : '')};
+		overflow-wrap: break-word;
+	}
+`
 
 const Number = styled.span`
 	color: ${({ theme }) => theme.PALETTE.gray[100]};
 `
 
 const InfoSection = styled.table`
+	overflow-wrap: break-word;
 	padding: 20px 0px 20px 20px;
 	width: 100%;
 	border-top: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};
@@ -166,6 +178,7 @@ const InfoSection = styled.table`
 `
 const InfoDataLow = styled.tr``
 const BodySection = styled.div`
+	overflow-wrap: break-word;
 	padding: 50px 0px 100px 0px;
 `
 export const UserCard = styled.div`

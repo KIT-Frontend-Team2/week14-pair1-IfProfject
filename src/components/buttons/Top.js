@@ -2,10 +2,11 @@ import Fab from '@mui/material/Fab'
 import NavigationIcon from '@mui/icons-material/Navigation'
 import styled from 'styled-components'
 import { useState } from 'react'
+import { useDevice } from 'hooks/useDevice'
 
 const TopButton = () => {
 	const [showButton, setShowButton] = useState(false)
-
+	const { isMobile } = useDevice()
 	const MoveTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
@@ -34,6 +35,6 @@ export default TopButton
 const TopBtn = styled.div`
 	position: fixed;
 	bottom: 20px;
-	right: 20px;
+	right: ${({ isMobile }) => (isMobile ? '15%' : '20px')};
 	z-index: 900;
 `

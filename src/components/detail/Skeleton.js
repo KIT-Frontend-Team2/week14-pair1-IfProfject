@@ -3,8 +3,11 @@ import Container from '@mui/material/Container'
 import TopButton from 'components/buttons/Top'
 import BackButton from 'components/buttons/Back'
 import { Skeleton } from '@mui/material'
+import { useDevice } from 'hooks/useDevice'
 
 const SkeletonDetailPage = () => {
+	const { isMobile } = useDevice()
+
 	return (
 		<S.Wrapper>
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
@@ -12,16 +15,19 @@ const SkeletonDetailPage = () => {
 					<S.TitleSection>
 						<Skeleton
 							variant="text"
-							sx={{ fontSize: '3rem', width: '600px' }}
+							sx={{
+								fontSize: !isMobile ? '3rem' : '1rem',
+								width: !isMobile ? '600px' : '200px',
+							}}
 						/>
 						<S.Number>
 							<Skeleton
 								variant="text"
-								sx={{ fontSize: '2rem', width: '150px' }}
+								sx={{ fontSize: '2rem', width: !isMobile ? '150px' : '75px' }}
 							/>
 							<Skeleton
 								variant="text"
-								sx={{ fontSize: '2rem', width: '100px' }}
+								sx={{ fontSize: '2rem', width: !isMobile ? '150px' : '75px' }}
 							/>
 						</S.Number>
 					</S.TitleSection>
@@ -31,19 +37,27 @@ const SkeletonDetailPage = () => {
 								<td>
 									<Skeleton
 										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
+										sx={{
+											fontSize: '2rem',
+											width: !isMobile ? '150px' : '80px',
+										}}
 									/>
 								</td>
 								<td>
 									<UserCard>
-										<Skeleton
-											variant="circular"
-											width={'2rem'}
-											height={'2rem'}
-										/>
+										{!isMobile && (
+											<Skeleton
+												variant="circular"
+												width={'2rem'}
+												height={'2rem'}
+											/>
+										)}
 										<Skeleton
 											variant="text"
-											sx={{ fontSize: '2rem', width: '150px' }}
+											sx={{
+												fontSize: '2rem',
+												width: !isMobile ? '150px' : '80px',
+											}}
 										/>
 									</UserCard>
 								</td>
@@ -52,43 +66,57 @@ const SkeletonDetailPage = () => {
 								<td>
 									<Skeleton
 										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
+										sx={{
+											fontSize: '2rem',
+											width: !isMobile ? '150px' : '80px',
+										}}
 									/>
 								</td>
 								<td>
 									<Skeleton
 										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
+										sx={{
+											fontSize: '2rem',
+											width: !isMobile ? '150px' : '80px',
+										}}
 									/>
 								</td>
 							</S.InfoDataLow>
+							{!isMobile && (
+								<S.InfoDataLow>
+									<td>
+										<Skeleton
+											variant="text"
+											sx={{ fontSize: '2rem', width: '150px' }}
+										/>
+									</td>
+									<S.LabelList>
+										<div>
+											<Skeleton variant="rounded" width={120} height={25} />
+											<Skeleton variant="rounded" width={120} height={25} />
+											<Skeleton variant="rounded" width={120} height={25} />
+											<Skeleton variant="rounded" width={120} height={25} />
+										</div>
+									</S.LabelList>
+								</S.InfoDataLow>
+							)}
 							<S.InfoDataLow>
 								<td>
 									<Skeleton
 										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
-									/>
-								</td>
-								<S.LabelList>
-									<div>
-										<Skeleton variant="rounded" width={120} height={25} />
-										<Skeleton variant="rounded" width={120} height={25} />
-										<Skeleton variant="rounded" width={120} height={25} />
-										<Skeleton variant="rounded" width={120} height={25} />
-									</div>
-								</S.LabelList>
-							</S.InfoDataLow>
-							<S.InfoDataLow>
-								<td>
-									<Skeleton
-										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
+										sx={{
+											fontSize: '2rem',
+											width: !isMobile ? '150px' : '75px',
+										}}
 									/>
 								</td>
 								<td>
 									<Skeleton
 										variant="text"
-										sx={{ fontSize: '2rem', width: '150px' }}
+										sx={{
+											fontSize: '2rem',
+											width: !isMobile ? '150px' : '75px',
+										}}
 									/>
 								</td>
 							</S.InfoDataLow>
@@ -136,7 +164,7 @@ const InfoSection = styled.table`
 	tr > td:first-child {
 		padding-right: 20px;
 		font-weight: bold;
-		width: 150px;
+		width: ${({ isMobile }) => (isMobile ? '80px' : '150px')};
 	}
 `
 const LabelList = styled.td`

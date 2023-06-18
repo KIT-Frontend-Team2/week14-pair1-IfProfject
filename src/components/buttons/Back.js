@@ -21,6 +21,6 @@ export default BackButton
 const BackBtn = styled.div`
 	position: fixed;
 	top: 20px;
-	right: 20px;
+	right: ${({ isMobile }) => (isMobile ? '15%' : '20px')};
 	z-index: 900;
 `

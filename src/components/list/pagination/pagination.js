@@ -48,6 +48,7 @@ const Pagination = () => {
 			</S.PageButton>
 			{currentPageGroup.map(page => (
 				<S.PageButton
+					key={Math.floor(Math.random() * 10000)}
 					page={page}
 					currentPage={currentPage}
 					onClick={e => handleChange(e, page)}
