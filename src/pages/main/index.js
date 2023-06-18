@@ -8,21 +8,29 @@ import styled from 'styled-components'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
+import { motion, useScroll } from 'framer-motion'
 
 const MainPage = () => {
+	const { scrollYProgress } = useScroll()
 	useEffect(() => {
 		AOS.init()
 	}, [])
 
 	return (
-		<S.RendingPage>
-			<FirstSection />
-			<SecondSection />
-			<ThirdSection />
-			<RollingSection />
-			<FourthSection />
-			<FifthSection />
-		</S.RendingPage>
+		<>
+			<motion.div
+				className="progress-bar"
+				style={{ scaleX: scrollYProgress }}
+			/>
+			<S.RendingPage>
+				<FirstSection />
+				<SecondSection />
+				<ThirdSection />
+				<RollingSection />
+				<FourthSection />
+				<FifthSection />
+			</S.RendingPage>
+		</>
 	)
 }
 
