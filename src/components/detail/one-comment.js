@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 	border-bottom: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};
 	margin: 10px 0 10px 0;
 	padding: 10px 0 10px 0;
+	overflow-wrap: break-word;
 `
 
 const InfoDataLow = styled.div`
