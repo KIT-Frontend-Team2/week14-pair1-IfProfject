@@ -7,9 +7,11 @@ import styled from 'styled-components'
 import theme from 'styles/theme'
 import fontIsDark from 'utils/color-helper'
 import timeFormatter from 'utils/time-helper'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import { Adjust, CheckCircle } from '@mui/icons-material'
 
 const OneIssue = ({ issue }) => {
-	const { number, title, labels, user, created_at } = issue
+	const { number, state, title, comments, labels, user, created_at } = issue
 
 	const navigation = useNavigate()
 
@@ -21,8 +23,9 @@ const OneIssue = ({ issue }) => {
 		<Card variant="outlined" sx={{ height: '100%' }}>
 			<CardContent sx={{ padding: 4 }}>
 				<S.InfoTop>
-					<div>
+					<S.InfoTitle>
 						<Typography
+							variant="h3"
 							sx={{
 								fontSize: theme.FONT_SIZE.large,
 								fontWeight: theme.FONT_WEIGHT.semiBold,
@@ -34,14 +37,28 @@ const OneIssue = ({ issue }) => {
 							}}
 							onClick={() => onClickTitle(number)}
 						>
+							{state === 'open' ? (
+								<Adjust color="secondary" />
+							) : (
+								<CheckCircle color="success" />
+							)}
 							<ReactMarkdown
 								children={title}
 								rehypePlugins={[rehypeRaw]}
 								remarkPlugins={[remarkGfm]}
 							/>
 						</Typography>
-					</div>
-					<div></div>
+					</S.InfoTitle>
+					<S.InfoComment>
+						{comments ? (
+							<>
+								<ChatBubbleOutlineIcon color="action" />
+								{comments}
+							</>
+						) : (
+							''
+						)}
+					</S.InfoComment>
 				</S.InfoTop>
 				<S.InfoMiddle>
 					<div>
@@ -88,6 +105,31 @@ const InfoBottom = styled.div`
 	gap: 12px;
 	padding-top: 12px;
 `
+const InfoTitle = styled.div`
+	h3 {
+		svg {
+			vertical-align: middle;
+			margin-right: 4px;
+		}
+		p {
+			margin-top: 0;
+			display: inline;
+			code {
+				padding: 3px 6px;
+				font-size: ${theme.FONT_SIZE.medium};
+				font-weight: ${theme.FONT_WEIGHT.bold};
+				background-color: #f0f0f0;
+			}
+		}
+	}
+`
+
+const InfoComment = styled.div`
+	display: flex;
+	justify-content: end;
+	align-items: start;
+	gap: 8px;
+`
 
 const InfoItem = styled.div`
 	display: flex;
@@ -99,5 +141,7 @@ const S = {
 	InfoTop,
 	InfoBottom,
 	InfoMiddle,
+	InfoTitle,
+	InfoComment,
 	InfoItem,
 }

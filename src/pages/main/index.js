@@ -3,32 +3,42 @@ import FirstSection from 'components/main/FirstSection'
 import FourthSection from 'components/main/FourthSection'
 import SecondSection from 'components/main/SecondSection'
 import ThirdSection from 'components/main/ThiredSection'
-import { useNavigate } from 'react-router-dom'
+import RollingSection from 'components/main/RollingSection'
 import styled from 'styled-components'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
+import { motion, useScroll } from 'framer-motion'
 
 const MainPage = () => {
-	const navigate = useNavigate()
+	const { scrollYProgress } = useScroll()
+	useEffect(() => {
+		AOS.init()
+	}, [])
+
 	return (
-		<S.RendingPage>
-			<FirstSection />
-			<SecondSection />
-			<ThirdSection />
-			<FourthSection />
-			<FifthSection />
-			<button onClick={() => navigate('/issues')}>이동</button>
-		</S.RendingPage>
+		<>
+			<motion.div
+				className="progress-bar"
+				style={{ scaleX: scrollYProgress }}
+			/>
+			<S.RendingPage>
+				<FirstSection />
+				<SecondSection />
+				<ThirdSection />
+				<RollingSection />
+				<FourthSection />
+				<FifthSection />
+			</S.RendingPage>
+		</>
 	)
 }
 
 export default MainPage
 
 const RendingPage = styled.div`
-	height: 100vh;
-	overflow: auto;
-	scroll-snap-type: y mandatory;
-	::-webkit-scrollbar {
-		display: none;
-	}
+	background-color: #000;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `
 
 const S = {

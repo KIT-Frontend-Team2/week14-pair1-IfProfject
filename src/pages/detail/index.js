@@ -8,17 +8,17 @@ import Comments from 'components/detail/Comments'
 import timeFormatter from 'utils/time-helper'
 import CheckCircle from '@mui/icons-material/CheckCircle'
 import Adjust from '@mui/icons-material/Adjust'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import TopButton from 'components/buttons/Top'
 import BackButton from 'components/buttons/Back'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from 'reducer/detail'
+import SkeletonDetailPage from 'components/detail/Skeleton'
 
 const DetailPage = () => {
 	const searchParam = useParams()
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const detailInfo = useSelector(state => state.detail.detail)
 	const { loading } = useSelector(state => state.detail.getDetailState)
@@ -32,9 +32,8 @@ const DetailPage = () => {
 		loadDetail()
 	}, [])
 
-	if (!detailInfo) return <div>데이터가 없습니다</div>
+	if (loading || !detailInfo) return <SkeletonDetailPage />
 
-	console.log(detailInfo)
 	const {
 		title,
 		labels,
@@ -46,6 +45,7 @@ const DetailPage = () => {
 		user,
 		comments,
 	} = detailInfo
+
 	return (
 		<S.Wrapper>
 			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
@@ -89,9 +89,8 @@ const DetailPage = () => {
 												key={label.id}
 												label={label.name}
 												style={{
-													color: `${
-														fontIsDark(label.color) ? 'white' : 'black'
-													}`,
+													color: `${fontIsDark(label.color) ? 'white' : 'black'
+														}`,
 													backgroundColor: `#${label.color}`,
 													fontWeight: 'bold',
 													marginRight: '5px',
@@ -125,17 +124,18 @@ const DetailPage = () => {
 
 export default DetailPage
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 	width: 100%;
 `
 
-const Section = styled.section`
+export const Section = styled.section`
 	border: 2px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};
 	padding: 30px;
 	height: 100%;
 	margin-bottom: 20px;
 `
 const TitleSection = styled.h2``
+
 const Number = styled.span`
 	color: ${({ theme }) => theme.PALETTE.gray[100]};
 `
