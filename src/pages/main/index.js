@@ -9,12 +9,14 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import { motion, useScroll } from 'framer-motion'
+import { useDevice } from 'hooks/useDevice'
 
 const MainPage = () => {
 	const { scrollYProgress } = useScroll()
 	useEffect(() => {
 		AOS.init()
 	}, [])
+	const { isDesktop } = useDevice()
 
 	return (
 		<>
@@ -24,11 +26,15 @@ const MainPage = () => {
 			/>
 			<S.RendingPage>
 				<FirstSection />
-				<SecondSection />
-				<ThirdSection />
-				<RollingSection />
-				<FourthSection />
-				<FifthSection />
+				{isDesktop && (
+					<>
+						<SecondSection />
+						<ThirdSection />
+						<RollingSection />
+						<FourthSection />
+						<FifthSection />
+					</>
+				)}
 			</S.RendingPage>
 		</>
 	)

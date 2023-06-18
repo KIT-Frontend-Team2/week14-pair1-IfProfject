@@ -18,6 +18,7 @@ import { flexCenter } from 'styles/common'
 import { useNavigate } from 'react-router-dom'
 import theme from 'styles/theme'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import { useDevice } from 'hooks/useDevice'
 
 const FirstSection = () => {
 	const [opacity, setOpacity] = useState(1)
@@ -35,6 +36,146 @@ const FirstSection = () => {
 	useEffect(() => {
 		window.addEventListener('scroll', handelScroll)
 	}, [])
+
+	const { isMobile, isTablet } = useDevice()
+
+	if (isMobile) {
+		return (
+			<PhoneWrapper>
+				<h5>Angular Issues Explorer</h5>
+				<p>Deliver web apps with confidence</p>
+				<Stack spacing={2} direction="row">
+					<Button
+						color="error"
+						onClick={() => {
+							window.scrollTo({ top: 0 })
+							navigate('/issues')
+						}}
+						variant="outlined"
+					>
+						Site
+					</Button>
+					<Button
+						color="secondary"
+						onClick={() => {
+							window.open('https://github.com/angular')
+						}}
+						variant="outlined"
+					>
+						Git
+					</Button>
+					<Button
+						color="info"
+						onClick={() => {
+							window.open('https://angular.kr/')
+						}}
+						variant="outlined"
+					>
+						Home
+					</Button>
+				</Stack>
+				<Swiper
+					spaceBetween={30}
+					centeredSlides={true}
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
+					pagination={{
+						clickable: true,
+					}}
+					navigation={false}
+					modules={[Autoplay, Pagination, Navigation]}
+					className="mySwiper"
+				>
+					<SwiperSlide>
+						<img src={img1} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img2} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img3} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img4} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img5} />
+					</SwiperSlide>
+				</Swiper>
+			</PhoneWrapper>
+		)
+	}
+
+	if (isTablet) {
+		return (
+			<TabletWrapper>
+				<h5>Angular Issues Explorer</h5>
+				<p>Deliver web apps with confidence</p>
+				<Stack spacing={2} direction="row">
+					<Button
+						color="error"
+						onClick={() => {
+							window.scrollTo({ top: 0 })
+							navigate('/issues')
+						}}
+						variant="outlined"
+					>
+						Site
+					</Button>
+					<Button
+						color="secondary"
+						onClick={() => {
+							window.open('https://github.com/angular')
+						}}
+						variant="outlined"
+					>
+						Git
+					</Button>
+					<Button
+						color="info"
+						onClick={() => {
+							window.open('https://angular.kr/')
+						}}
+						variant="outlined"
+					>
+						Home
+					</Button>
+				</Stack>
+				<Swiper
+					spaceBetween={30}
+					centeredSlides={true}
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
+					pagination={{
+						clickable: true,
+					}}
+					navigation={false}
+					modules={[Autoplay, Pagination, Navigation]}
+					className="mySwiper"
+				>
+					<SwiperSlide>
+						<img src={img1} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img2} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img3} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img4} />
+					</SwiperSlide>
+					<SwiperSlide>
+						<img src={img5} />
+					</SwiperSlide>
+				</Swiper>
+			</TabletWrapper>
+		)
+	}
 
 	return (
 		<S.BackgroundDiv opacity={opacity}>
@@ -182,6 +323,52 @@ const InfoTitle = styled.h5`
 		100% {
 			transform: translateY(-50%);
 		}
+	}
+`
+
+const PhoneWrapper = styled.div`
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	padding: 3rem;
+	color: white;
+	flex-direction: column;
+	h5 {
+		font-size: 36px;
+		margin-bottom: 0px;
+	}
+	p {
+		font-size: 24px;
+	}
+	.swiper-wrapper {
+		height: auto;
+	}
+
+	div {
+		margin-bottom: 30px;
+	}
+`
+
+const TabletWrapper = styled.div`
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	padding: 3rem;
+	color: white;
+	flex-direction: column;
+	h5 {
+		font-size: 36px;
+		margin-bottom: 0px;
+	}
+	p {
+		font-size: 24px;
+	}
+	.swiper-wrapper {
+		height: auto;
+	}
+
+	div {
+		margin-bottom: 30px;
 	}
 `
 
