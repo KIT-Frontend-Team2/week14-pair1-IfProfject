@@ -3,17 +3,25 @@ import theme from 'styles/theme'
 import SearchBox from 'components/list/searchBox/SearchBox'
 import IssueList from 'components/list/list/issue-list'
 import Pagination from 'components/list/pagination/pagination'
+import { motion, useScroll } from 'framer-motion'
 
 const ListPage = () => {
+	const { scrollYProgress } = useScroll()
 	return (
-		<S.Wrapper>
-			<S.Container>
-				<S.Title>Issue Finder 🔍</S.Title>
-				<SearchBox />
-				<IssueList />
-				<Pagination />
-			</S.Container>
-		</S.Wrapper>
+		<>
+			<motion.div
+				className="progress-bar"
+				style={{ scaleX: scrollYProgress }}
+			/>
+			<S.Wrapper>
+				<S.Container>
+					<S.Title>Issue Finder 🔍</S.Title>
+					<SearchBox />
+					<IssueList />
+					<Pagination />
+				</S.Container>
+			</S.Wrapper>
+		</>
 	)
 }
 

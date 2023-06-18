@@ -16,8 +16,10 @@ import remarkGfm from 'remark-gfm'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from 'reducer/detail'
 import SkeletonDetailPage from 'components/detail/Skeleton'
+import { motion, useScroll } from 'framer-motion'
 
 const DetailPage = () => {
+	const { scrollYProgress } = useScroll()
 	const searchParam = useParams()
 	const dispatch = useDispatch()
 	const detailInfo = useSelector(state => state.detail.detail)
@@ -47,78 +49,85 @@ const DetailPage = () => {
 	} = detailInfo
 
 	return (
-		<S.Wrapper>
-			<Container style={{ paddingTop: '40px' }} maxWidth="xl">
-				<S.Section>
-					<S.TitleSection>
-						<ReactMarkdown
-							children={title}
-							rehypePlugins={[rehypeRaw]}
-							remarkPlugins={[remarkGfm]}
-						/>{' '}
-						<S.Number>#{number}</S.Number>{' '}
-						{state === 'open' ? (
-							<Chip icon={<Adjust />} label={state} color="secondary" />
-						) : (
-							<Chip icon={<CheckCircle />} label={state} color="success" />
-						)}
-					</S.TitleSection>
-					<S.InfoSection>
-						<tbody>
-							<S.InfoDataLow>
-								<td>user</td>
-								<td>
-									<UserCard>
-										<Avatar alt={user.login} src={user.avatar_url} />{' '}
-										{user.login}
-									</UserCard>
-								</td>
-							</S.InfoDataLow>
-							<S.InfoDataLow>
-								<td>
-									{created_at === updated_at ? 'created_at' : 'updated_at'}
-								</td>
-								<td>{timeFormatter(updated_at)}</td>
-							</S.InfoDataLow>
-							<S.InfoDataLow>
-								<td>Labels</td>
-								<td>
-									{labels.map(label => {
-										return (
-											<Chip
-												key={label.id}
-												label={label.name}
-												style={{
-													color: `${fontIsDark(label.color) ? 'white' : 'black'
+		<>
+			<motion.div
+				className="progress-bar"
+				style={{ scaleX: scrollYProgress }}
+			/>
+			<S.Wrapper>
+				<Container style={{ paddingTop: '40px' }} maxWidth="xl">
+					<S.Section>
+						<S.TitleSection>
+							<ReactMarkdown
+								children={title}
+								rehypePlugins={[rehypeRaw]}
+								remarkPlugins={[remarkGfm]}
+							/>{' '}
+							<S.Number>#{number}</S.Number>{' '}
+							{state === 'open' ? (
+								<Chip icon={<Adjust />} label={state} color="secondary" />
+							) : (
+								<Chip icon={<CheckCircle />} label={state} color="success" />
+							)}
+						</S.TitleSection>
+						<S.InfoSection>
+							<tbody>
+								<S.InfoDataLow>
+									<td>user</td>
+									<td>
+										<UserCard>
+											<Avatar alt={user.login} src={user.avatar_url} />{' '}
+											{user.login}
+										</UserCard>
+									</td>
+								</S.InfoDataLow>
+								<S.InfoDataLow>
+									<td>
+										{created_at === updated_at ? 'created_at' : 'updated_at'}
+									</td>
+									<td>{timeFormatter(updated_at)}</td>
+								</S.InfoDataLow>
+								<S.InfoDataLow>
+									<td>Labels</td>
+									<td>
+										{labels.map(label => {
+											return (
+												<Chip
+													key={label.id}
+													label={label.name}
+													style={{
+														color: `${
+															fontIsDark(label.color) ? 'white' : 'black'
 														}`,
-													backgroundColor: `#${label.color}`,
-													fontWeight: 'bold',
-													marginRight: '5px',
-												}}
-											/>
-										)
-									})}
-								</td>
-							</S.InfoDataLow>
-							<S.InfoDataLow>
-								<td>Unlimited</td>
-								<td>Unlimited</td>
-							</S.InfoDataLow>
-						</tbody>
-					</S.InfoSection>
-					<S.BodySection>
-						<ReactMarkdown
-							children={body}
-							rehypePlugins={[rehypeRaw]}
-							remarkPlugins={[remarkGfm]}
-						/>
-					</S.BodySection>
-				</S.Section>
-				<Comments detailCommentsLength={comments} />
-			</Container>
-			<BackButton />
-			<TopButton />
-		</S.Wrapper>
+														backgroundColor: `#${label.color}`,
+														fontWeight: 'bold',
+														marginRight: '5px',
+													}}
+												/>
+											)
+										})}
+									</td>
+								</S.InfoDataLow>
+								<S.InfoDataLow>
+									<td>Unlimited</td>
+									<td>Unlimited</td>
+								</S.InfoDataLow>
+							</tbody>
+						</S.InfoSection>
+						<S.BodySection>
+							<ReactMarkdown
+								children={body}
+								rehypePlugins={[rehypeRaw]}
+								remarkPlugins={[remarkGfm]}
+							/>
+						</S.BodySection>
+					</S.Section>
+					<Comments detailCommentsLength={comments} />
+				</Container>
+				<BackButton />
+				<TopButton />
+			</S.Wrapper>
+		</>
 	)
 }
 
