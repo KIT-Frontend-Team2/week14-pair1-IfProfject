@@ -2,6 +2,7 @@
 ## 프로젝트 정보
 
 AIF Project (Angular issues finder)
+
 날짜: 2023년 6월 12일 → 2023년 6월 18일
 
 ### 요구사항 정리 (완료)
