@@ -18,7 +18,10 @@ const FifthSection = () => {
 					<div>
 						<Button
 							color="info"
-							onClick={() => navigate('/issues')}
+							onClick={() => {
+								window.scrollTo({ top: 0 })
+								navigate('/issues')
+							}}
 							variant="outlined"
 						>
 							watching issues
