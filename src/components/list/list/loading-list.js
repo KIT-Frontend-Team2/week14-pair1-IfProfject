@@ -1,7 +1,9 @@
 import { Avatar, Box, Card, CardContent, Skeleton } from '@mui/material'
+import { useDevice } from 'hooks/useDevice'
 import styled from 'styled-components'
 
 const LoadingList = () => {
+	const { isDesktop } = useDevice()
 	const dummy = Array(10).fill()
 
 	return (
@@ -15,7 +17,7 @@ const LoadingList = () => {
 			{dummy.map(() => (
 				<Box
 					sx={{
-						width: '50%',
+						width: isDesktop ? '50%' : '100%',
 						padding: 1,
 					}}
 					key={dummy.id}

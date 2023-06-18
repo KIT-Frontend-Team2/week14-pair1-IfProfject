@@ -162,7 +162,7 @@ const Number = styled.span`
 
 const InfoSection = styled.table`
 	overflow-wrap: break-word;
-	padding: 20px 0px 20px 20px;
+	padding: 20px 0px 20px 0;
 	width: 100%;
 	border-top: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};
 	border-bottom: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};

@@ -4,9 +4,11 @@ import SearchBox from 'components/list/searchBox/SearchBox'
 import IssueList from 'components/list/list/issue-list'
 import Pagination from 'components/list/pagination/pagination'
 import { motion, useScroll } from 'framer-motion'
+import { useDevice } from 'hooks/useDevice'
 
 const ListPage = () => {
 	const { scrollYProgress } = useScroll()
+	const { isDesktop } = useDevice()
 	return (
 		<>
 			<motion.div
@@ -15,7 +17,7 @@ const ListPage = () => {
 			/>
 			<S.Wrapper>
 				<S.Container>
-					<S.Title>Issue Finder 🔍</S.Title>
+					<S.Title isDesktop={isDesktop}>Issue Finder 🔍</S.Title>
 					<SearchBox />
 					<IssueList />
 					<Pagination />
@@ -38,7 +40,7 @@ const Container = styled.div`
 `
 
 const Title = styled.div`
-	padding: 60px 0;
+	padding: ${({ isDesktop }) => (isDesktop ? '60px 0' : '50px 0 10px')};
 	color: #333;
 	font-size: 36px;
 	font-weight: 700;

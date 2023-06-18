@@ -17,7 +17,7 @@ const SkeletonDetailPage = () => {
 							variant="text"
 							sx={{
 								fontSize: !isMobile ? '3rem' : '1rem',
-								width: !isMobile ? '600px' : '200px',
+								width: !isMobile ? '100%' : '200px',
 							}}
 						/>
 						<S.Number>
@@ -94,8 +94,6 @@ const SkeletonDetailPage = () => {
 										<div>
 											<Skeleton variant="rounded" width={120} height={25} />
 											<Skeleton variant="rounded" width={120} height={25} />
-											<Skeleton variant="rounded" width={120} height={25} />
-											<Skeleton variant="rounded" width={120} height={25} />
 										</div>
 									</S.LabelList>
 								</S.InfoDataLow>
@@ -154,7 +152,7 @@ const Number = styled.span`
 `
 
 const InfoSection = styled.table`
-	padding: 20px 0px 20px 20px;
+	padding: 20px 0px 20px 0;
 	width: 100%;
 	border-top: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};
 	border-bottom: 1.5px solid ${({ theme }) => theme.PALETTE.Border.InnerBorder};

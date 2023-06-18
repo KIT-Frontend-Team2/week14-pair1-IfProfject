@@ -5,9 +5,11 @@ import { useEffect } from 'react'
 import { getIssue } from 'reducer/issue'
 import { useSearchParams } from 'react-router-dom'
 import LoadingList from './loading-list'
+import { useDevice } from 'hooks/useDevice'
 
 const IssueList = () => {
 	const [searchParam, setSearchParam] = useSearchParams()
+	const { isDesktop } = useDevice()
 
 	const dispatch = useDispatch()
 	const issues = useSelector(state => state.issue.issues)
@@ -36,7 +38,7 @@ const IssueList = () => {
 					{issues.map(issue => (
 						<Box
 							sx={{
-								width: '50%',
+								width: isDesktop ? '50%' : '100%',
 								padding: 1,
 							}}
 							key={issue.id}
