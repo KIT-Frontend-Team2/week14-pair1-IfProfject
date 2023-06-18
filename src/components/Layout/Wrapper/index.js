@@ -1,24 +1,33 @@
 import styled from 'styled-components'
+import { flexCenter } from 'styles/common'
 
-const Wrapper = ({ children, backGround }) => {
+const Wrapper = ({ children, paddingTop, backGround }) => {
 	return (
-		<S.Box backGround={backGround}>
-			<S.Container>{children}</S.Container>
-		</S.Box>
+		<S.BoxWrapper paddingTop={paddingTop}>
+			<S.Box backGround={backGround}>
+				<S.Container>{children}</S.Container>
+			</S.Box>
+		</S.BoxWrapper>
 	)
 }
 
 export default Wrapper
 
+const BoxWrapper = styled.div`
+	padding-top: ${({ paddingTop }) => paddingTop};
+`
+
 const Box = styled.div`
-	scroll-snap-align: center;
-	height: 100vh;
-	font-size: 70px;
-	text-align: center;
+	width: 100%;
+	color: #fff;
 	background-color: ${({ backGround }) => backGround};
 `
 
 const Container = styled.div`
-	padding: 5em;
+	${flexCenter}
+	gap: 40px;
+	margin: 0 auto;
+	width: 1080px;
+	padding: 40px 40px;
 `
-const S = { Box, Container }
+const S = { BoxWrapper, Box, Container }
