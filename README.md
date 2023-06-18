@@ -23,13 +23,13 @@ AIF Project (Angular issues finder)
 ### 시연 동영상
 
 #### 렌딩 페이지
-![렌딩페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/7818c7dc-44b4-48f2-9c14-4fda9474f0f8)
+![렌딩페이지](https://github.com/KIT-Frontend-Team2/week14-pair1-IfProfject/assets/115636461/e8710e09-b1c1-48e7-9190-68b2a6b2bf2a)
 
 #### 목록 페이지
-![목록페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/b91d9d66-a1a3-4c56-9f1a-ae296b0dcc28)
+![목록페이지](https://github.com/KIT-Frontend-Team2/week14-pair1-IfProfject/assets/115636461/273e0647-d315-4bce-aaf2-55780eb0533a)
 
 #### 상세 페이지
-![상세페이지](https://github.com/Jihyeong00/frontend_Develop/assets/115636461/b8b98f28-01cb-4eed-8ade-be8e642664db)
+![상세페이지](https://github.com/KIT-Frontend-Team2/week14-pair1-IfProfject/assets/115636461/0703106b-e33f-40dd-bc1e-7edd4c63ffe9)
 
 ### 디자인 정리
 
